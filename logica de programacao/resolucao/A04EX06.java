@@ -1,26 +1,54 @@
 public class A04EX06 {
     public static boolean elementosRepetidos(double[] input) {
-        // Cria um conjunto (Set) para armazenar os valores únicos
-        java.util.HashSet<Double> uniqueValues = new java.util.HashSet<>();
+        java.util.HashSet<Double> uniqueValues = new HashSet<>();
 
-        // Percorre o array para verificar se existem valores repetidos
-        for (double value : input) {
+        int i = 0;
+        while (i < input.length) {
+            double value = input[i];
             if (uniqueValues.contains(value)) {
                 return true; // Valor repetido encontrado
             } else {
                 uniqueValues.add(value); // Adiciona o valor ao conjunto
             }
+            i++;
         }
 
-        // Se chegou aqui, significa que não há valores repetidos
-        return false;
+        return false; // Nenhum valor repetido encontrado
     }
 
     public static void main(String[] args) {
-        double[] valores1 = {2.5, 3.2, 4.5, 5, 6};
-        double[] valores2 = {2, 2, 3.1, 4, 4.1, 4.1};
+        double[][] entradas = {
+                {2.5, 3.2, 4.5, 5, 6},
+                {2.5, 2.5, 4.5, 6, 6},
+                {1, 2, 4, 5, 6, 7, 7, 8, 8, 2, 1},
+                {1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11, 12, 13, 14, 15},
+                {1, 2, 3, 4, 9, 10, 11, 21, 20, 1, 31},
+                {1},
+                {1.55, 1.56, 1.57, 1.58, 1.59, 1.58},
+                {1.55, 1.56, 1.57, 1.58, 1.59, 1.589},
+                {1.5555, 1.565, 1.57, 1.58, 1.59, 1.5895},
+        };
 
-        System.out.println(elementosRepetidos(valores1)); // Saída: false
-        System.out.println(elementosRepetidos(valores2)); // Saída: true
+        boolean[] saidas = {
+                false,
+                true,
+                true,
+                false,
+                true,
+                false,
+                true,
+                false,
+                false,
+        };
+
+        for (int i = 0; i < entradas.length; i++) {
+            boolean resultado = elementosRepetidos(entradas[i]);
+            boolean esperado = saidas[i];
+
+            System.out.println("Resultado: " + resultado);
+            System.out.println("Esperado: " + esperado);
+            System.out.println(resultado == esperado);
+            System.out.println();
+        }
     }
 }
